@@ -13,7 +13,7 @@
 
                  (C) 2024, C. Hofman - cor.hofman@terrabox.nl
 
-          <FluidTankLevelWidget.cpp> - Library for LevelIndicators.
+          <FluidTankLevelGUI.cpp> - Library for LevelIndicators.
                                  16 Aug 2024
                        Released into the public domain
               as GitHub project: TerraboxNL/TerraBox_LevelIndicator
@@ -41,8 +41,8 @@
  *
  *--------------------------------------------------------------------------*/
 #include <Persistence.h>
-#include <FluidTankLevelMonitor.h>
 #include <FluidLevelConfigWidget.h>
+#include "FluidTankLevelGUI.h"
 
 /**----------------------------------------------------------------------------
  *

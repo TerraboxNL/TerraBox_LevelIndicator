@@ -47,16 +47,23 @@
 #ifndef LEVELINDICATORWIDGET_h
 #define LEVELINDICATORWIDGET_h
 
+#define WELCOME_MESSAGE_TIMEOUT  60000    // Time the welcome message is shown
 
 /*============================================================================
  *  L E V E L  I N D I C A T O R  W I D G E T
  *===========================================================================*/
 class LevelIndicatorWidget : public Widget {
   private:
+    LabelWidget* welcomeMessage = nullptr; // Keeps track of welcom message timing
+    uint32_t     welcomeTimeout = 0;
+
+    bool         welcomeShown   = false;
+
     LabelWidget *title;
     LabelWidget *value;
     uint16_t    currentHeight;
     const String unit;
+
 
   public:
 
@@ -72,8 +79,10 @@ class LevelIndicatorWidget : public Widget {
 
     virtual void draw();
     virtual void redraw();
+    virtual void clear();
     virtual void drawInverted();
     void         update(uint16_t newValue);
+
 //    virtual void onEvent(TouchEvent* event);
 };
 

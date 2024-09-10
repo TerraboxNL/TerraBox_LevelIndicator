@@ -97,6 +97,7 @@ void DistanceMonitor::init(DistanceSensor* pSensor, ValueConverter* pConverter, 
 
 void DistanceMonitor::begin() {
 
+	Serial.println("indicator->draw()");
 	indicator->draw();
 
 }

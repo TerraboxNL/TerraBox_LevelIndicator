@@ -111,9 +111,21 @@ LevelIndicatorWidget::LevelIndicatorWidget(
                        labelSize, "", GRAY_D,   
                        pStroke,   WHITE,        WHITE);
 
-  value->setText("0");
+  value->setTextPercent("0");
   currentHeight += value->height;
 
+  //
+  //  Crete the welcom message instructing users how to activate setup.
+  //
+  welcomeShown = false;
+  char buff [32];
+  sprintf(buff, "Tap %s title\nto define levels", name);
+  welcomeMessage = new LabelWidget(this,
+		  x,         y - 40,
+          width,     valueHeight + 2*pStroke,
+          1, buff , GRAY_D,
+          pStroke,   WHITE,        WHITE);
+  welcomeTimeout = millis();  // Remember the time are which it was shown.
 }
 
 /*------------------------------------------------------------------------------
@@ -123,8 +135,15 @@ LevelIndicatorWidget::LevelIndicatorWidget(
  *----------------------------------------------------------------------------*/
 void LevelIndicatorWidget::draw() {
 
- if (!isVisible())
+  if (!isVisible())
 	return;
+
+  //
+  // If the welcome message hs not been show yet, then do so.
+  //
+  if (!welcomeShown) {
+	 welcomeMessage->draw();
+  }
 
   title->draw();
   bar  ->draw();
@@ -138,8 +157,16 @@ void LevelIndicatorWidget::draw() {
  *-------------------------------------------------------------------------------*/
 void LevelIndicatorWidget::redraw() {
 
+	  Serial.println("LevelIndicator::redraw()");
   if (!isVisible())
  	return;
+
+  //
+  // If the welcome message hs not been show yet, then do so.
+  //
+  if (!welcomeShown) {
+	 welcomeMessage->draw();
+  }
 
   if (!inverted) {
 	  title->redraw();
@@ -152,7 +179,7 @@ void LevelIndicatorWidget::redraw() {
   //
   // Set to the last percentage
   //
-  update(0);
+//  update(0);
 }
 
 /*---------------------------------------------------------------------------------
@@ -164,10 +191,30 @@ void LevelIndicatorWidget::drawInverted() {
 	 if (!isVisible())
 		return;
 
+	  //
+	  // If the welcome message hs not been show yet, then do so.
+	  //
+	  if (!welcomeShown) {
+		 welcomeMessage->drawInverted();
+	  }
+
 	  title->drawInverted();
 	  bar  ->drawInverted();
 	  value->drawInverted();
 
+}
+
+/**---------------------------------------------------------------------------
+ *
+ *  Clear not only the indicator, but also the welcome message if existing.
+ *
+ *--------------------------------------------------------------------------*/
+void LevelIndicatorWidget::clear() {
+	if (welcomeMessage) {
+		welcomeMessage->clear();
+	}
+
+	Widget::clear();
 }
 
 /*------------------------------------------------------------------------------
@@ -178,6 +225,20 @@ void LevelIndicatorWidget::drawInverted() {
  *
  *----------------------------------------------------------------------------*/
 void LevelIndicatorWidget::update(uint16_t newValue) {
+
+  //
+  //  If welcom text has been show long enough, the clear it.
+  //
+  if (! welcomeShown) {
+    if (millis() - welcomeTimeout > WELCOME_MESSAGE_TIMEOUT) {
+    	welcomeMessage->clear(); // Clear the welcome message
+    	this->remove(welcomeMessage);
+    	delete welcomeMessage;  // Release the resources.
+        welcomeMessage = nullptr;
+    	welcomeShown   = true;
+    }
+  }
+
 
   if (!isVisible())
 	  return;

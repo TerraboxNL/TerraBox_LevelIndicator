@@ -13,7 +13,7 @@
 
                  (C) 2024, C. Hofman - cor.hofman@terrabox.nl
 
-            <FluidTankLevelWidget.cpp> - Library for LevelIndicators.
+            <FluidTankLevelGUI.cpp> - Library for LevelIndicators.
                               16 Aug 2024
                        Released into the public domain
               as GitHub project: TerraboxNL/TerraBox_LevelIndicator
@@ -44,13 +44,12 @@
 //#include <TaskScheduler.h>           // For Task
 //#include <A02_UART_Auto.h>           // A02_UART_Auto sensor
 #include <DistanceSensor.h>            // Simulated Distance Sensor
-#include <DistanceMonitor.h>           // DistanceMonitor
-//#include <LevelIndicatorWidget.h>    // LevelIndicator
 #include <FluidLevelConfigWidget.h>    // Configurator for Fluid levels
 #include <PopupButton.h>               // Popup button to activate config
+#include <DistanceMonitor.h>           // DistanceMonitor
 
-#ifndef FLUID_TANK_LEVEL_MONITOR_H_
-#define FLUID_TANK_LEVEL_MONITOR_H_
+#ifndef FLUID_TANK_LEVEL_GUI_H_
+#define FLUID_TANK_LEVEL_GUI_H_
 
 /*=============================================================================
  *
