@@ -8,7 +8,7 @@
       //   ////// //   // //   // //   //    //////    ////  //   //
 
      
-                 A R D U I N O   D I S T A N C E  S E N S O R S
+                  A R D U I N O  L E V E L  I N D I C A T O R
 
 
                  (C) 2024, C. Hofman - cor.hofman@terrabox.nl
@@ -55,7 +55,7 @@
  * @param sensor      The distance sensor to be used
  *
  *---------------------------------------------------------------------------*/
-FluidTankLevelMonitor::FluidTankLevelMonitor(char* name, const char* fluidName, DistanceSensor* sensor) :
+FluidTankLevelGUI::FluidTankLevelGUI(char* name, const char* fluidName, DistanceSensor* sensor) :
 	                      DistanceMonitor (name) {
     init(fluidName, sensor);
 
@@ -73,7 +73,7 @@ FluidTankLevelMonitor::FluidTankLevelMonitor(char* name, const char* fluidName, 
  * @param sensor      The distance sensor to be used
  *
  *---------------------------------------------------------------------------*/
-FluidTankLevelMonitor::FluidTankLevelMonitor(char* name, uint16_t cycleTime,
+FluidTankLevelGUI::FluidTankLevelGUI(char* name, uint16_t cycleTime,
 			                                   const char* fluidName, DistanceSensor* sensor) :
 		                  DistanceMonitor (name, cycleTime) {
     init(fluidName, sensor);
@@ -88,7 +88,7 @@ FluidTankLevelMonitor::FluidTankLevelMonitor(char* name, uint16_t cycleTime,
  *  @param fluidName   The name of the fluid, which shows up in the GUI
  *
  *---------------------------------------------------------------------------*/
-void FluidTankLevelMonitor::init(const char* fluidName, DistanceSensor* sensor) {
+void FluidTankLevelGUI::init(const char* fluidName, DistanceSensor* sensor) {
 
 	strcpy(nameId, "FluidTank");
 
@@ -140,7 +140,7 @@ void FluidTankLevelMonitor::init(const char* fluidName, DistanceSensor* sensor) 
 	DistanceMonitor::init(sensor, theValueConverter, theIndicator);
 }
 
-void FluidTankLevelMonitor::begin() {
+void FluidTankLevelGUI::begin() {
 	//
 	//  See if we need configuration
 	//
@@ -170,7 +170,7 @@ void FluidTankLevelMonitor::begin() {
  *  @return   True if already configured, otherwise false.
  *
  *---------------------------------------------------------------------------*/
-bool FluidTankLevelMonitor::isConfigured() {
+bool FluidTankLevelGUI::isConfigured() {
 
 	if (theConfigurator->readConfiguration())
 		return true;
@@ -186,7 +186,7 @@ bool FluidTankLevelMonitor::isConfigured() {
  *  @param sensor  The sensor needed to optionally measure the distances with
  *
  *---------------------------------------------------------------------------*/
-void FluidTankLevelMonitor::configure(DistanceSensor* sensor) {
+void FluidTankLevelGUI::configure(DistanceSensor* sensor) {
 
 	//
 	// Perform the configuration of this fluid level indicator.

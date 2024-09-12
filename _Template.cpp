@@ -8,12 +8,12 @@
       //   ////// //   // //   // //   //    //////    ////  //   //
 
      
-                 A R D U I N O   D I S T A N C E  S E N S O R S
+                 A R D U I N O  L E V E L  I N D I C A T O R
 
 
                  (C) 2024, C. Hofman - cor.hofman@terrabox.nl
 
-               <${name}> - Library for LevelIndicators.
+               <${name}> - Library for fluid level indicator.
                                  ${date}
                        Released into the public domain
               as GitHub project: TerraboxNL/TerraBox_LevelIndicator

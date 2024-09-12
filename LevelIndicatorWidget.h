@@ -11,7 +11,7 @@
                A R D U I N O   L E V E L   I N D I C A T O R
 
 
-                 (C) 2024, C. Hofman - cor.hofman@terrabox.nl
+                   A R D U I N O  L E V E L  I N D I C A T O R
 
                <LevelIndicatorWidget.h> - Library forGUI Widgets.
                               16 Aug 2024

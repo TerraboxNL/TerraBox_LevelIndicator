@@ -8,7 +8,7 @@
       //   ////// //   // //   // //   //    //////    ////  //   //
 
      
-                 A R D U I N O   D I S T A N C E  S E N S O R S
+                  A R D U I N O  L E V E L  I N D I C A T O R
 
 
                  (C) 2024, C. Hofman - cor.hofman@terrabox.nl
@@ -57,7 +57,7 @@
  *  is visualized.
  *
  *===========================================================================*/
-class FluidTankLevelMonitor : public DistanceMonitor {
+class FluidTankLevelGUI : public DistanceMonitor {
 private:
 
 	//
@@ -104,8 +104,8 @@ private:
 	PopupButton* popUpConfigure = nullptr;
 
 public:
-	FluidTankLevelMonitor(char* name, const char* fluidName, DistanceSensor* sensor);
-	FluidTankLevelMonitor(char* name, uint16_t cycleTime, const char* fluidName, DistanceSensor* sensor);
+	FluidTankLevelGUI(char* name, const char* fluidName, DistanceSensor* sensor);
+	FluidTankLevelGUI(char* name, uint16_t cycleTime, const char* fluidName, DistanceSensor* sensor);
 
 	bool isConfigured();                   // True if configured
 	void configure(DistanceSensor* senor); // User specified configuration
